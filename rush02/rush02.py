@@ -37,7 +37,6 @@ c = 10**(l-(l%3)) if l % 3 else 10**(l-3)
 s = ""
 r = ""
 
-print(c)
 for num in n:
     if num < '0' or num > '9':
         print("Entrez seulement des chiffres")

@@ -9,36 +9,52 @@ def make_dict():
         d = dict(get_pair(line) for line in fd)
     return d
 
-def get_c(c, diz, u, d):
-    return d[c] + ' ' + d[100] + ' ' + get_d(diz, u, d) 
+def get_c(cen, diz, u, d):
+    if (cen == 0):
+        return get_d(diz, u, d)
+    else:
+        return d[cen] + ' ' + d[100] + ' ' + get_d(diz, u, d) 
     
 def get_d(diz, u, d):
-    if (int(str(diz) + str(u))) in d:
+    if (int(str(diz) + str(u))) in d and int(str(diz) + str(u)) != 0:
         return d[int(str(diz) + str(u))] + ' '
+    elif (diz == 0):
+        return (get_u(u, d))
     else:
         return d[diz * 10] + ' ' + get_u(u, d)
 def get_u(u, d):
-    return d[u] + ' '
+    if (u == 0):
+        return '' 
+    else:
+        return d[u] + ' '
 
 
 l = len(sys.argv[1])
 n = sys.argv[1]
 d = make_dict()
-c = (10**(l-(l%3)))
 i = 0
+c = 10**(l-(l%3)) if l % 3 else 10**(l-3)
 s = ""
+r = ""
+
+print(c)
+for num in n:
+    if num < '0' or num > '9':
+        print("Entrez seulement des chiffres")
+        exit()
 while i < len(sys.argv[1]):
-    if (l % 3 == 0):
-        s += get_c(int(n[i]), int(n[i + 1]), int(n[i + 2]), d)
+    if (l % 3 == 0):       
+        r = get_c(int(n[i]), int(n[i + 1]), int(n[i + 2]), d)
         i += 3
-    elif(l % 3 == 2):
-        s += get_d(int(n[i]), int(n[i + 1]), d)
+    elif (l % 3 == 2):
+        r += get_d(int(n[i]), int(n[i + 1]), d)
         i += 2
     else:
-        s += get_u(int(n[i]), d)
+        r += get_u(int(n[i]), d)
         i += 1
-    if (c > 1):
+    l -= l % 3
+    s += r
+    if (c >= 1000) and r != "":
         s += d[c] + ' '
     c /= 1000
-    l -= l % 3
 print(s)

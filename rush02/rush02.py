@@ -41,6 +41,9 @@ for num in n:
     if num < '0' or num > '9':
         print("Entrez seulement des chiffres")
         exit()
+if l > 12:
+    print("Entrez un chiffre moindre que 999 999 999 999")
+    exit()
 while i < len(sys.argv[1]):
     if (l % 3 == 0):       
         r = get_c(int(n[i]), int(n[i + 1]), int(n[i + 2]), d)

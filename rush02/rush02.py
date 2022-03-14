@@ -27,7 +27,9 @@ def get_u(u, d):
         return '' 
     else:
         return d[u] + ' '
-
+def print_error():
+    print("Entrez un nombre < 1 000 000 000 000 sans espace")
+    exit()
 
 l = len(sys.argv[1])
 n = sys.argv[1]
@@ -36,14 +38,10 @@ i = 0
 c = 10**(l-(l%3)) if l % 3 else 10**(l-3)
 s = ""
 r = ""
-
 for num in n:
-    if num < '0' or num > '9':
-        print("Entrez seulement des chiffres")
-        exit()
-if l > 12:
-    print("Entrez un chiffre moindre que 999 999 999 999")
-    exit()
+    if num < '0' or num > '9' or l > 12:
+        print_error()
+i = 0
 while i < len(sys.argv[1]):
     if (l % 3 == 0):       
         r = get_c(int(n[i]), int(n[i + 1]), int(n[i + 2]), d)
